@@ -43,6 +43,27 @@ Then replay the cross dependencies tests:
 It will run your tests against an algorith (TODO: create more algorithm than the basic one) 
 
 
+## Algorithm
+
+WARNING: At worse it will run Math.pow(2, n) combinations of your tests.
+Depending on your tests suite size, it may take a long time.
+
+
+* Tests order are saved in a file
+  provided a `--seed` option and `--save-cross-deps`
+* Invoke with `--find-cross-deps` to run combinations of the saved tests runs
+* First used algorithm is trying combinations with bisect
+* The last failed subset of tests is then used
+* Combinations of this subset are executed independently
+* We always execute the smallest subsets first
+* When one is found then the report stops
+* if `--all-combinations` is passed, all possible candidates are reported: 
+  i.e the smallest subsets, cardinality speaking  
+  
+## Caveats
+
+* Does not work with parallel tests
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

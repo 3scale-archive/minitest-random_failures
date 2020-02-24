@@ -1,11 +1,23 @@
 require "test_helper"
+require 'minitest/random_failures/reporter'
 
-class Minitest::RandomFailuresTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Minitest::RandomFailures::VERSION
-  end
+class Minitest::RandomFailuresTest < BaseTest
 
-  def test_it_does_something_useful
-    assert false
+  test_fixture 'cross_dependencies'
+
+  def test_reporter_saves_file
+    reporter = Minitest::RandomFailures::Reporter.new
+
+    CrossDependenciesTest.run(reporter)
+
+    reporter.report
+    assert reporter.passed?
+    assert File.exist?(reporter.report_file_name)
+    report = File.read(reporter.report_file_name)
+    report.chomp!
+    results = report.each_line.map do |line|
+      line.split("\0")
+    end
+    assert_equal 'failed', results.find{|line| line[1] == 'test_mutating_object' }.last
   end
 end
