@@ -5,6 +5,8 @@ class Minitest::RandomFailuresTest < BaseTest
 
   test_fixture 'cross_dependencies'
 
+  include Minitest::RandomFailures
+
   def test_reporter_saves_file
     reporter = Minitest::RandomFailures::Reporter.new
 
@@ -12,8 +14,8 @@ class Minitest::RandomFailuresTest < BaseTest
 
     reporter.report
     assert reporter.passed?
-    assert File.exist?(reporter.report_file_name)
-    report = File.read(reporter.report_file_name)
+    assert File.exist?(Report::DEFAULT_REPORT_FILE)
+    report = File.read(Report::DEFAULT_REPORT_FILE)
     report.chomp!
     results = report.each_line.map do |line|
       line.split("\0")
