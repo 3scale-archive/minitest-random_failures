@@ -5,11 +5,10 @@ require 'minitest/random_failures/report_file'
 module Minitest
   module RandomFailures
     class Report
-      DEFAULT_REPORT_FILE = 'test/reports/minitest-cross-deps'
       DELIMITER = "\0"
 
       def initialize(file_name = nil)
-        @report_file = ReportFile.new(file_name || DEFAULT_REPORT_FILE)
+        @report_file = ReportFile.new(file_name)
       end
 
       def write(result)
@@ -18,6 +17,13 @@ module Minitest
 
       def close
         @report_file.close if @report_file #rubocop:disable Style/SafeNavigation
+      end
+
+      def parse
+        @tests ||= @report_file.open_read
+        @report_file.each_line.map do |line|
+          yield line.chomp.split(DELIMITER)
+        end
       end
 
       private

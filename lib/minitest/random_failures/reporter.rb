@@ -21,6 +21,9 @@ module Minitest
         self.results << result
       end
 
+      def start
+      end
+
       def report
         # super is noop but in case for compatibility with future versions
         super
@@ -40,8 +43,6 @@ module Minitest
         !@error
       end
     end
-
-
   end
 end
 

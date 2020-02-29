@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CrossDependenciesTest < NonAutorunTest
-  seed 50
+  seed 20
 
   Thread.current[:ramdom_failure] = 5
 
