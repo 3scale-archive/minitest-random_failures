@@ -26,7 +26,6 @@ class Minitest::RandomFailuresTest < BaseTest
     assert_equal 'failed', results.find{|line| line[1] == 'test_mutating_object' }.last
   end
 
-
   def test_runner
     runner = Runner.new
     tests = runner.run

@@ -21,13 +21,14 @@ module Minitest
               test.run(reporter)
             end
 
+            # TODO: is it really the good number?
             if reporter.current_failed? && tests.size > 2
               size = (tests.size / 2)
               results = self.class.new(tests[size..-1]).run(reporter)
             else
               results = tests
             end
-          end.join
+          end.join # Immediately wait for this Thread to finish
           results
         end
 

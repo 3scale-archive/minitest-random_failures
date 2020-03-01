@@ -7,15 +7,6 @@ module Minitest
     if options[:save_cross_deps]
       reporter << Minitest::RandomFailures::Reporter.new
     end
-
-    if options[:replay_cross_deps]
-      Minitest.singleton_class.prepend(Module.new do
-        def autorun
-          puts 'Minitest.autorun is noop'
-          exit 1
-        end
-      end)
-    end
   end
 
   def self.plugin_random_failures_options(opts, options)
@@ -29,6 +20,13 @@ module Minitest
     class Error < StandardError; end
     # Your code goes here...
     #
+    def self.hook!
+      Minitest.singleton_class.prepend(Module.new do
+        def autorun
+          puts 'Minitest.autorun is noop'
+        end
+      end)
+    end
 
   end
 end

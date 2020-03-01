@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'minitest/random_failures'
+require 'minitest/random_failures/runner'
+require 'bundler'
+
+Bundler.require(:default, :development)
+
+# Make Minitest.autorun noop
+Minitest::RandomFailures.hook!
+
+reporter = Minitest::RandomFailures::Runner.run(ARGV)
+reporter.report
