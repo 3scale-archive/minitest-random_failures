@@ -17,7 +17,7 @@ GEM
     pry-byebug (3.8.0)
       byebug (~> 11.0)
       pry (~> 0.10)
-    rake (12.3.2)
+    rake (12.3.3)
 
 PLATFORMS
   ruby
@@ -26,7 +26,7 @@ DEPENDENCIES
   minitest (~> 5.0)
   minitest-random_failures!
   pry-byebug
-  rake (~> 12.0)
+  rake (~> 12.3)
 
 BUNDLED WITH
    2.1.4
