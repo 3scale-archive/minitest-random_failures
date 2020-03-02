@@ -21,6 +21,7 @@ Add this line to your application's Gemfile:
 ```ruby
 group :test do
   gem 'minitest-random_failures'
+end
 ```
 
 And then execute:
