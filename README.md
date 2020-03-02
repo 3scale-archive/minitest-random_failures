@@ -5,9 +5,14 @@ or have already happened and this README is not up to date.
 
 # Minitest::RandomFailures
 
-This is a plugin to Minitest that may help you find cross dependent tests
+This is a plugin to Minitest that may help you find cross dependent tests.
 Those tests are likely to lead to random failures when your run you test suites
 with `:random` option.
+
+Motivation is simple: https://github.com/seattlerb/minitest/blob/b670f162ed0675f45ad816c02374ba7669e3603f/lib/minitest/test.rb#L27-L36
+
+![i_suck_and_my_tests_are_order_dependent](random.png)
+
 
 ## Installation
 
@@ -16,7 +21,6 @@ Add this line to your application's Gemfile:
 ```ruby
 group :test do
   gem 'minitest-random_failures'
-end
 ```
 
 And then execute:
