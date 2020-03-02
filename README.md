@@ -1,3 +1,8 @@
+# WARNING!!!!
+
+This gem is under heavy construction (aka unstable). Many changes will happen,
+or have already happened and this README is not up to date.
+
 # Minitest::RandomFailures
 
 This is a plugin to Minitest that may help you find cross dependent tests
